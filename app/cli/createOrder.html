@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sabates Vidal - Create Order</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="createOrder.js"></script>
+</head>
+<body>
+  <header class="header">
+    <img src="Logopj1sabateria.png" alt="Sabates Vidal Logo" class="logo">
+    <h1 class="title">Create Order</h1>
+  </header>
+
+  <main class="main">
+    <form id="orderForm">
+      <fieldset>
+        <legend>Customer</legend>
+        <label>
+          Order code
+          <input type="text" id="ordercodi" name="ordercodi" required>
+        </label>
+        <label>
+          Full name
+          <input type="text" id="clientName" name="clientName" required>
+        </label>
+        <label>
+          Address
+          <input type="text" id="clientAddress" name="clientAddress" required>
+        </label>
+        <label>
+          Email
+          <input type="email" id="clientEmail" name="clientEmail" required>
+        </label>
+        <label>
+          Phone
+          <input type="tel" id="clienttelefon" name="clienttelefon" required>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Products (street shoes)</legend>
+
+        <div class="product-row">
+          <input type="checkbox" id="p1_chk" data-index="0">
+          <label for="p1_chk">Men's Derby - €65.00</label>
+          <input type="number" id="p1_qty" min="1" value="1" disabled>
+        </div>
+
+        <div class="product-row">
+          <input type="checkbox" id="p2_chk" data-index="1">
+          <label for="p2_chk">Women's Loafer - €59.50</label>
+          <input type="number" id="p2_qty" min="1" value="1" disabled>
+        </div>
+
+        <div class="product-row">
+          <input type="checkbox" id="p3_chk" data-index="2">
+          <label for="p3_chk">Casual Sneaker - €49.99</label>
+          <input type="number" id="p3_qty" min="1" value="1" disabled>
+        </div>
+
+        <div class="product-row">
+          <input type="checkbox" id="p4_chk" data-index="3">
+          <label for="p4_chk">Children's Shoes - €34.00</label>
+          <input type="number" id="p4_qty" min="1" value="1" disabled>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Send to server</button>
+        <button type="button" class="btn" onclick="location.href='menu.html'">⬅ Back to Menu</button>
+        <button type="button" class="btn" onclick="location.href='index.html'">⬅ Home</button>
+      </div>
+
+      <div id="serverResult" class="result" aria-live="polite"></div>
+    </form>
+  </main>
+</body>
+</html>
