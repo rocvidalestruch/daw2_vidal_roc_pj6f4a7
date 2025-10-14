@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sabates Vidal - Operations Menu</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="menu.js"></script>
+</head>
+<body>
+  <header class="header">
+    <img src="Logopj1sabateria.png" alt="Sabates Vidal Logo" class="logo">
+    <h1 class="title">Operations Menu</h1>
+  </header>
+
+  <main class="main">
+    <form id="operationsForm" class="menu-form">
+      <label for="operationSelect"><strong>Select an operation:</strong></label>
+      <select id="operationSelect" name="operation" required>
+        <option value="" disabled selected>-- Choose an option --</option>
+        <option value="../cli/createOrder.html">1 - Create & Store an Order</option>
+        <option value="../srv/viewAllOrders.php">2 - View All Orders</option>
+        <option value="../srv/viewOrder.html">3 - View a Specific Order</option>
+      </select>
+
+      <button type="submit" class="btn">Go</button>
+    </form>
+
+    <button class="btn" onclick="location.href='index.html'">
+      ⬅ Back to Home
+    </button>
+  </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Order</title>
+  <link rel="stylesheet" href="../cli/styles.css">
+  <script>
+    async function fetchOrder(event) {
+      event.preventDefault();
+      const code = document.getElementById('orderCode').value.trim();
+      const resultDiv = document.getElementById('orderResult');
+      resultDiv.textContent = '';
+
+      if (!code) {
+        resultDiv.textContent = 'Please enter an order code.';
+        return;
+      }
+
+      const response = await fetch('../srv/viewOrder.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'code=' + encodeURIComponent(code)
+      });
+
+      if (!response.ok) {
+        resultDiv.textContent = 'Server error.';
+        return;
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        resultDiv.innerHTML = `<strong>Order Code:</strong> ${data.order.code}<br>
+          <strong>Name:</strong> ${data.order.customer}<br>
+          <strong>Address:</strong> ${data.order.address}<br>
+          <strong>Email:</strong> ${data.order.email}<br>
+          <strong>Phone:</strong> ${data.order.phone}<br>
+          <strong>Total with VAT:</strong> ${data.order.totals.total_with_vat} €`;
+      } else {
+        resultDiv.textContent = data.message;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>View Specific Order</h1>
+
+  <form onsubmit="fetchOrder(event)">
+    <label for="orderCode">Order Code:</label>
+    <input type="text" id="orderCode" required>
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="orderResult" class="result"></div>
+
+  <div class="form-actions">
+    <button type="button" onclick="location.href='../cli/menu.html'">⬅ Back to Menu</button>
+    <button type="button" onclick="location.href='../cli/index.html'">⬅ Home</button>
+  </div>
+</body>
+</html>

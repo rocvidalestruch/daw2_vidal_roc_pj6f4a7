@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <title>Sabates Vidal - Create Order</title>
+  <link rel="stylesheet" href="../cli/styles.css">
+  <script defer src="createOrder.js"></script>
+</head>
+<body>
+  <header class="header">
+    <img src="Logopj1sabateria.png" alt="Sabates Vidal Logo" class="logo">
+    <h1 class="title">Create Order</h1>
+  </header>
+
+  <main class="main">
+    <form id="orderForm" action="../srv/create_order.php" method="POST">
+      <fieldset>
+        <legend>Client</legend>
+        <label>
+          Codi de la comanda
+          <input type="text" name="code" required>
+        </label>
+        <label>
+          Nom complet
+          <input type="text" name="customer" required>
+        </label>
+        <label>
+          Adreça
+          <input type="text" name="address" required>
+        </label>
+        <label>
+          Correu electrònic
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Telèfon
+          <input type="tel" name="phone" required>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Productes (sabates de carrer)</legend>
+        <div class="product-row">
+          <input type="checkbox" name="products[]" value="Men's Derby|65.00" id="p1_chk" onchange="document.getElementById('p1_qty').disabled = !this.checked">
+          <label for="p1_chk">Men's Derby - €65.00</label>
+          <input type="number" name="quantities[]" id="p1_qty" value="1" min="1" disabled>
+        </div>
+
+        <div class="product-row">
+          <input type="checkbox" name="products[]" value="Women's Loafer|59.50" id="p2_chk" onchange="document.getElementById('p2_qty').disabled = !this.checked">
+          <label for="p2_chk">Women's Loafer - €59.50</label>
+          <input type="number" name="quantities[]" id="p2_qty" value="1" min="1" disabled>
+        </div>
+
+        <div class="product-row">
+          <input type="checkbox" name="products[]" value="Casual Sneaker|49.99" id="p3_chk" onchange="document.getElementById('p3_qty').disabled = !this.checked">
+          <label for="p3_chk">Casual Sneaker - €49.99</label>
+          <input type="number" name="quantities[]" id="p3_qty" value="1" min="1" disabled>
+        </div>
+
+        <div class="product-row">
+          <input type="checkbox" name="products[]" value="Children's Shoes|34.00" id="p4_chk" onchange="document.getElementById('p4_qty').disabled = !this.checked">
+          <label for="p4_chk">Children's Shoes - €34.00</label>
+          <input type="number" name="quantities[]" id="p4_qty" value="1" min="1" disabled>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Enviar al servidor</button>
+        <button type="button" class="btn" onclick="location.href='menu.html'">⬅ Tornar al menú</button>
+        <button type="button" class="btn" onclick="location.href='index.html'">⬅ Inici</button>
+      </div>
+
+      <div id="serverResult" class="result" aria-live="polite"></div>
+    </form>
+  </main>
+</body>
+</html>
