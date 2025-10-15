@@ -3,7 +3,7 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
 
     const formData = new FormData(this);
 
-    // Construïm array de productes seleccionats
+
     const productNames = formData.getAll('products[]');
     const quantities = formData.getAll('quantities[]');
 
@@ -14,9 +14,8 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
             unit_price: parseFloat(priceStr),
             quantity: parseInt(quantities[i] || '0', 10)
         };
-    }).filter(p => p.quantity > 0); // només productes amb quantitat
+    }).filter(p => p.quantity > 0);
 
-    // Payload JSON
     const payload = {
         code: formData.get('code'),
         customer: formData.get('customer'),
@@ -36,13 +35,13 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
         const resultDiv = document.getElementById('serverResult');
         if (data.success) {
             resultDiv.innerHTML = `✅ ${data.message} - Total: €${data.total_with_vat}`;
-            this.reset(); // opcional: reiniciar formulari
+            this.reset();
         } else {
             resultDiv.innerHTML = `❌ Error: ${data.message}`;
         }
     })
     .catch(err => {
         console.error(err);
-        document.getElementById('serverResult').innerHTML = '❌ Error en enviar la comanda.';
+        document.getElementById('serverResult').innerHTML = '❌ Error sending order.';
     });
 });
