@@ -15,31 +15,31 @@
   <main class="main">
     <form id="orderForm" action="../srv/create_order.php" method="POST">
       <fieldset>
-        <legend>Client</legend>
+        <legend>Costumer data</legend>
         <label>
-          Codi de la comanda
+          Order code
           <input type="text" name="code" required>
         </label>
         <label>
-          Nom complet
+          Full Name
           <input type="text" name="customer" required>
         </label>
         <label>
-          Adreça
+          Address
           <input type="text" name="address" required>
         </label>
         <label>
-          Correu electrònic
+          Email
           <input type="email" name="email" required>
         </label>
         <label>
-          Telèfon
+          Phone Number
           <input type="tel" name="phone" required>
         </label>
       </fieldset>
 
       <fieldset>
-        <legend>Productes (sabates de carrer)</legend>
+        <legend>Products (street shoes)</legend>
         <div class="product-row">
           <input type="checkbox" name="products[]" value="Men's Derby|65.00" id="p1_chk" onchange="document.getElementById('p1_qty').disabled = !this.checked">
           <label for="p1_chk">Men's Derby - €65.00</label>
@@ -67,8 +67,8 @@
 
       <div class="form-actions">
         <button type="submit" class="btn">Enviar al servidor</button>
-        <button type="button" class="btn" onclick="location.href='menu.html'">⬅ Tornar al menú</button>
-        <button type="button" class="btn" onclick="location.href='index.html'">⬅ Inici</button>
+        <button type="button" class="btn" onclick="location.href='menu.html'">⬅ Back to Menu</button>
+        <button type="button" class="btn" onclick="location.href='index.html'">⬅ Home</button>
       </div>
 
       <div id="serverResult" class="result" aria-live="polite"></div>
