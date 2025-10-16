@@ -15,7 +15,7 @@ echo "<!DOCTYPE html>
 <body>
   <h1>All Orders</h1>";
 
-if (!file_exists($ordersFile)) {
+if (!file_exists($ordersFile)) { // finds out if the database file exists
     echo "<p>No orders found.</p>";
 } else {
     $fp = fopen($ordersFile, 'rb');
@@ -27,9 +27,10 @@ if (!file_exists($ordersFile)) {
             if ($len <= 0) break;
 
             $serialized = fread($fp, $len);
-            fgets($fp); // saltar línia final
+            fgets($fp); // jumps to the final line
 
-            $order = @unserialize($serialized);
+            //desserializes the order and it converts into text line so it can be read correctly
+            $order = @unserialize($serialized); 
             if (is_array($order)) {
                 $line = "{$order['code']} : {$order['customer']} : {$order['address']} : {$order['email']} : {$order['phone']} : {$order['totals']['total_with_vat']}€";
                 echo "<div class='order-line'>" . htmlspecialchars($line) . "</div>";

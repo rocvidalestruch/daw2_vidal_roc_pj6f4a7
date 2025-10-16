@@ -48,7 +48,7 @@ foreach ($productsData as $item) {
     }
 }
 
-// Càlcul totals
+// Calculates the total of the order
 $net = 0.0;
 foreach ($products as $p) {
     $net += $p['unit_price'] * $p['quantity'];
@@ -57,7 +57,7 @@ $net = round($net, 2);
 $vat = round($net * 0.21, 2);
 $total = round($net + $vat, 2);
 
-// Guardar comanda
+// Saves the order
 $orderRecord = [
     'code'=>$code,
     'customer'=>$customer,
@@ -73,16 +73,17 @@ $orderRecord = [
     'timestamp'=>time()
 ];
 
-$serialized = serialize($orderRecord);
+$serialized = serialize($orderRecord); // Converts the array into a text string
 $record = strlen($serialized)."\n".$serialized."\n";
 
+//Error message if the order couldn't be saved
 if (file_put_contents($ordersFile, $record, FILE_APPEND | LOCK_EX) === false) {
     http_response_code(500);
     echo json_encode(['success'=>false,'message'=>'Could not save order.']);
     exit;
-}
+} 
 
-// Retornem JSON
+// Returns the JSON
 echo json_encode([
     'success'=>true,
     'message'=>'Order saved successfully.',
